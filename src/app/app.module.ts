@@ -9,9 +9,15 @@ import { RegisterComponent } from './login/register.component';
 // RUTAS
 import { APP_ROUTES } from './app.routes';
 
+// servicios
+// import { SettingService } from './services/setting.service';
+
 // MODULO PAGES
 import { PagesModule } from './pages/pages.module';
 import { GarficaDona2Component } from './components/garfica-dona2/garfica-dona2.component';
+
+// MODULO DE SERVICIOS
+// import { ServiceModule } from './services/service.module';
 // import { GarficaDonaComponent } from './components/garfica-dona/garfica-dona.component';
 
 @NgModule({
@@ -27,6 +33,7 @@ import { GarficaDona2Component } from './components/garfica-dona2/garfica-dona2.
     APP_ROUTES,
     PagesModule,
     FormsModule
+    // ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
