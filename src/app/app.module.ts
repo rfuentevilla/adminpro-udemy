@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // TRABAJAR CON FORMULARIOS
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // TRABAJAR CON FORMULARIOS
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,9 +15,10 @@ import { APP_ROUTES } from './app.routes';
 // MODULO PAGES
 import { PagesModule } from './pages/pages.module';
 import { GarficaDona2Component } from './components/garfica-dona2/garfica-dona2.component';
+// import { HttpClientModule } from '@angular/common/http';
 
 // MODULO DE SERVICIOS
-// import { ServiceModule } from './services/service.module';
+import { ServiceModule } from './services/service.module';
 // import { GarficaDonaComponent } from './components/garfica-dona/garfica-dona.component';
 
 @NgModule({
@@ -32,8 +33,10 @@ import { GarficaDona2Component } from './components/garfica-dona2/garfica-dona2.
     BrowserModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule
-    // ServiceModule
+    ReactiveFormsModule,
+    FormsModule,
+    // HttpClientModule
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
