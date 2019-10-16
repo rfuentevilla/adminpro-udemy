@@ -12,6 +12,7 @@ import { Usuario } from '../../models/usuario.model';
 
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,10 @@ export class UsuarioService {
 
   constructor(
     public http: HttpClient,
-    public router: Router
+    public router: Router,
+    public subirArchivoService: SubirArchivoService
   ) {
-    console.log('Servicio de usuario listo');
+    // console.log('Servicio de usuario listo');
     this.cargarStorage();
   }
 
@@ -106,8 +108,6 @@ export class UsuarioService {
 
   }
 
-
-
   crearUsuario( usuario: Usuario ) {
     const url = `${URL_SERVICIOS}/usuario`;
 
@@ -125,7 +125,56 @@ export class UsuarioService {
              }));
   }
 
+  actualizarUsuario( usuario: Usuario ) {
+    const url = `${URL_SERVICIOS}/usuario/${ usuario._id }?token=${ this.token }`;
 
+    // console.log( url );
+    return this.http.put( url, usuario )
+      .pipe(map( (resp: any) => {
+
+        // this.usuario = resp.usuario;
+        this.guardarStorage( resp.usuario._id, this.token, resp.usuario );
+
+        Swal.fire({
+          title: 'Usuario Actualizado',
+          // text: usuario.email,
+          type: 'success',
+          confirmButtonText: 'Aceptar',
+          allowOutsideClick: false
+        });
+
+        return true;
+
+      }));
+
+
+  }
+
+  cambiarImagen( file: File, id: string ) {
+
+    this.subirArchivoService.subirArchivo( file, 'usuarios', id )
+      .then( (resp: any) => {
+        // console.log( resp );
+
+        this.usuario.img = resp.model.img;
+
+                // this.usuario = resp.usuario;
+        this.guardarStorage( this.usuario._id, this.token, this.usuario );
+
+        Swal.fire({
+          title: 'Imagen de Usuario Actualizado',
+          text: this.usuario.nombre,
+          type: 'success',
+          confirmButtonText: 'Aceptar',
+          allowOutsideClick: false
+        });
+
+
+      })
+      .catch( resp => {
+        console.error( resp );
+      });
+  }
 
 
 }

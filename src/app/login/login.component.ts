@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
 
   recuerdame = false;
   email: string;
+  password: string;
 
   auth2: any;
 
