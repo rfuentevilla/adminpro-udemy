@@ -19,6 +19,7 @@ import { GarficaDona2Component } from './components/garfica-dona2/garfica-dona2.
 
 // MODULO DE SERVICIOS
 import { ServiceModule } from './services/service.module';
+
 // import { ImagenPipe } from './pipes/imagen.pipe';
 // import { GarficaDonaComponent } from './components/garfica-dona/garfica-dona.component';
 
