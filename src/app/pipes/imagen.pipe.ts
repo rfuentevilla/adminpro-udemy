@@ -11,13 +11,13 @@ export class ImagenPipe implements PipeTransform {
     let url = `${URL_SERVICIOS}/imagenes`;
 
     if ( !img ) {
+      // console.log( `imagen mala - ${img} - tipo ${ tipo }` );
       return `${url}/usuarios/xxx`;
     }
 
     if ( img.indexOf('https') >= 0 ) {
       return img;
     }
-
 
     switch ( tipo ) {
       case 'usuario':
@@ -37,6 +37,8 @@ export class ImagenPipe implements PipeTransform {
           url += `/usuarios/xxx`;
           break;
     }
+
+    // console.log( url );
 
     return url;
   }

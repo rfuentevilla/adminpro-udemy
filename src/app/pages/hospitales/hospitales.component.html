@@ -1,0 +1,82 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input (keyup)="buscarHospital( input.value )" #input type="text" class="form-control" placeholder="Buscar Hospital..." name="" id="">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fas fa-sync-alt fa-spin fa-lg"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button (click)="crearHospital()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fas fa-plus"></i> Crear Hospital
+                    </button>
+                </div>
+
+                <h3 class="card-title">Hospitales registrados ( <small>{{ totalRegistros }}</small> )</h3>
+
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Hospital</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of hospitales">
+                            <td class="w70">
+                                <img (click)="mostrarModal( item._id )" [src]="item.img | imagen:'hospital'" class="img-50 pointer">
+                            </td>
+                            <td> <input [(ngModel)]="item.nombre" type="text" name="nombre" class="form-control"></td>
+                            <td>
+                                <div class="d-flex justify-content-sm-end">
+                                    <button (click)="actualizarHospital( item )" type="button" class="btn btn-primary mr-1 btn-xs">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button (click)="eliminarHospital( item )" type="button" class="btn btn-danger mr-1 btn-xs">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <!-- <div class="d-flex justify-content-sm-end">
+                    <button (click)="cambiarDesde(-5)" type="button" class="btn btn-secondary mr-1">
+                        Anterior
+                    </button>
+                    <button (click)="cambiarDesde(5)" type="button" class="btn btn-secondary mr-1">
+                        Siguiente
+                    </button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
