@@ -11,6 +11,8 @@ export { SharedService } from './shared/shared.service';
 // GUARDS
 // ==================================
 export { LoginGuardGuard } from './guards/login-guard.guard';
+export { AdminGuard } from './guards/admin.guard';
+
 
 
 
